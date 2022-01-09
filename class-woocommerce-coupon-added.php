@@ -23,7 +23,6 @@ class WooCommerceCouponAdded extends AbstractTrigger {
 		$this->set_description(
 			__( 'Fires when a coupon is applied to a cart', 'notification-woocommerce-coupon-added' )
 		);
-
 	}
 
 	/**
@@ -53,6 +52,5 @@ class WooCommerceCouponAdded extends AbstractTrigger {
 			'description' => __( 'The coupon applied to the cart', 'notification-woocommerce-coupon-added' ),
 			'example'     => true,
 		] ) );
-
 	}
 }
