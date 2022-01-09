@@ -35,6 +35,11 @@ class WooCommerceCouponAdded extends AbstractTrigger {
 	 */
 	public function context( $coupon ) {
 		$this->coupon = $coupon;
+
+		$cart = WC()->cart;
+
+		$this->cart_subtotal        = $cart->get_cart_subtotal();
+		$this->cart_contents_count  = $cart->get_cart_contents_count();
 	}
 
 	/**
@@ -50,7 +55,27 @@ class WooCommerceCouponAdded extends AbstractTrigger {
 				return $trigger->coupon;
 			},
 			'description' => __( 'The coupon applied to the cart', 'notification-woocommerce-coupon-added' ),
-			'example'     => true,
+			'example'     => false,
+		] ) );
+
+		$this->add_merge_tag( new \BracketSpace\Notification\Defaults\MergeTag\StringTag( [
+			'slug'        => 'cart_subtotal',
+			'name'        => __( 'Cart Subtotal', 'notification-woocommerce-coupon-added' ),
+			'resolver'    => function( $trigger ) {
+				return $trigger->cart_subtotal;
+			},
+			'description' => __( 'The subtotal of the cart at the time the coupon is applied.', 'notification-woocommerce-coupon-added' ),
+			'example'     => false,
+		] ) );
+
+		$this->add_merge_tag( new \BracketSpace\Notification\Defaults\MergeTag\StringTag( [
+			'slug'        => 'cart_contents_count',
+			'name'        => __( 'Cart Contents Count', 'notification-woocommerce-coupon-added' ),
+			'resolver'    => function( $trigger ) {
+				return $trigger->cart_contents_count;
+			},
+			'description' => __( 'The number of items in the cart at the time the coupon is applied.', 'notification-woocommerce-coupon-added' ),
+			'example'     => false,
 		] ) );
 	}
 }
