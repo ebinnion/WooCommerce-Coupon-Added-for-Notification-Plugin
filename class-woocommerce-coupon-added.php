@@ -12,7 +12,7 @@ class WooCommerceCouponAdded extends AbstractTrigger {
 	 */
 	public function __construct() {
 		parent::__construct(
-			'notification_woocommerce_coupon_added',
+			'woocommerce/cart/coupon_applied',
 			__( 'Coupon Added', 'notification-woocommerce-coupon-added' )
 		);
 
